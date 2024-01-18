@@ -130,3 +130,13 @@ body {
   background-color: #fff;
   cursor: pointer;
 }
+
+.v-divider{
+  height: 48px;
+  width: 2px;
+  background-color: #f6f6f6;
+}
+
+.clients-total{
+  margin: 20px 0 #7e7e7e;
+}
