@@ -1,3 +1,5 @@
+// const io = require("socket.io - client");
+
 const socket = io.connect("http://localhost:3000");
 
 const clientsTotal = document.getElementById("clients-total");
@@ -17,8 +19,6 @@ messageForm.addEventListener("submit", (e) => {
 });
 
 function sendMessage() {
-  console.log(messageInput.value);
-
   const data = {
     name: nameInput.value,
     message: messageInput.value,
@@ -36,12 +36,13 @@ socket.on("chat-message", (data) => {
 });
 
 function addMessageToUI(isOwnMessage, data) {
+  console.log(isOwnMessage);
   const element = `
       <li class="${isOwnMessage ? "message-right" : "message-left"}">
         <p class="message">
           ${data.message}
           <span>
-            ${data.name}}
+            ${data.name}
           </span>
         </p>
       </li>`;

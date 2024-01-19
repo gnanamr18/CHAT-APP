@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A basic chat app",
   "main": "server.js",
+  
   "scripts": {
     "start": "  node ./backend/server",
     "dev": "nodemon ./backend/server",
@@ -16,7 +17,8 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongoose": "^8.0.4",
-    "socket.io": "^4.7.4"
+    "socket.io": "^4.7.4",
+    "socket.io-client": "^4.7.4"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"

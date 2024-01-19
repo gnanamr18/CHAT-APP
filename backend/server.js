@@ -5,7 +5,11 @@ const path = require("path");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const onConnected = require("./utils/socket");
+
 // const http = require("http");
+
+connectDB();
 
 const app = express();
 
@@ -17,38 +21,18 @@ const server = app.listen(PORT, () => {
 
 const io = require("socket.io")(server);
 
+io.on("connection", (socket) => {
+  onConnected(socket);
+});
+
 //Load env var
 dotenv.config({ path: "../config/.env" });
-
-connectDB();
 
 app.use(cors());
 
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-io.on("connection", onConnected);
-
-let socketConnected = new Set();
-
-function onConnected(socket) {
-  console.log(socket.id);
-  socketConnected.add(socket.id);
-
-  io.emit("clients-total", socketConnected.size);
-
-  socket.on("disconnect", () => {
-    console.log("socket disconnected", socket.id);
-    socketConnected.delete(socket.id);
-    io.emit("clients-total", socketConnected.size);
-  });
-
-  socket.on("message", (data) => {
-    console.log(data);
-    socket.broadcast.emit("chat-message", data);
-  });
-}
 
 var messages = mongoose.model("messages", { name: String, message: String });
 
