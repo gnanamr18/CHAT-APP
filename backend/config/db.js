@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://gnanamr18:chatapp@cluster0.v7ax114.mongodb.net/chatappdb?retryWrites=true&w=majority"
+      "mongodb+srv://gnanamr18:chatapp@cluster0.v7ax114.mongodb.net/"
     );
 
     console.log("mongodb connected...");

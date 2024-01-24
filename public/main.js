@@ -7,6 +7,9 @@ const messageContainer = document.getElementById("message-container");
 const nameInput = document.getElementById("name-input");
 const messageForm = document.getElementById("message-form");
 const messageInput = document.getElementById("message-input");
+const userControler = require("../backend/controller/userControler");
+
+console.log(userControler.authUser);
 
 socket.on("clients-total", (data) => {
   console.log(data);
@@ -20,7 +23,7 @@ messageForm.addEventListener("submit", (e) => {
 
 function sendMessage() {
   const data = {
-    name: nameInput.value,
+    sender: nameInput.value,
     message: messageInput.value,
     dateTime: new Date(),
   };
